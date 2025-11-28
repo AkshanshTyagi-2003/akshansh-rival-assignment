@@ -1,82 +1,100 @@
-Rival.io API Log Analytics Engine
+# Rival.io API Log Analytics Engine
 
 A production-ready serverless analytics engine that processes large API log datasets and generates actionable insights, performance diagnostics, cost estimations, and caching recommendations.
 
 This project is implemented in Python with a strong focus on:
 
-Modular design
+- Modular design
 
-Performance
+- Performance
 
-Edge-case safety
+- Edge-case safety
 
-Clean code
+- Clean code
 
-Comprehensive testing
+- Comprehensive testing
 
-It fulfills all requirements of the Rival.io internship coding assignment.
+---
 
-🚀 Features
-Core Analytics
+## Features
+### Core Analytics
 
-✔ Total request summary
-✔ Time range detection
-✔ Average response time
-✔ Error-rate calculation
-✔ Per-endpoint statistics
-✔ Slow endpoint detection
-✔ High error-rate detection
-✔ Recommendations
-✔ Hourly request distribution
-✔ Top 5 active users
+✔ Total request summary<br>
+✔ Time range detection<br>
+✔ Average response time<br>
+✔ Error-rate calculation<br>
+✔ Per-endpoint statistics<br>
+✔ Slow endpoint detection<br>
+✔ High error-rate detection<br>
+✔ Recommendations<br>
+✔ Hourly request distribution<br>
+✔ Top 5 active users<br>
 
-Advanced Features
+### Advanced Features
 
-✔ Cost Estimation Engine
-✔ Caching Opportunity Analysis
+✔ Cost Estimation Engine<br>
+✔ Caching Opportunity Analysis<br>
 
-Production-Readiness
+### Production-Readiness
 
-✔ Input validation
-✔ Malformed data handling
-✔ Negative value protection
-✔ Timestamp parsing
-✔ Performance optimized (10k logs < 2 seconds)
-✔ Modular structure following best practices
+✔ Input validation<br>
+✔ Malformed data handling<br>
+✔ Negative value protection<br>
+✔ Timestamp parsing<br>
+✔ Performance optimized (10k logs < 2 seconds)<br>
+✔ Modular structure following best practices<br>
 
-📁 Repository Structure
-Akshansh_Rival_Assignment/
-├── function.py
-├── utils.py
-├── config.py
-├── advanced_features.py
-├── test_run.py
-├── tests/
-│   ├── test_function.py
-│   ├── test_edge_cases.py
-│   ├── test_performance.py
-│   └── test_data/
-│       ├── sample_small.json
-│       ├── sample_medium.json
-│       └── sample_large.json
-├── README.md
-└── DESIGN.md
+---
 
-🔧 Setup Instructions
-1. Clone the repository
+## Repository Structure
+
+```
+Akshansh_Rival_Assignment/<br>
+├── function.py<br>
+├── utils.py<br>
+├── config.py<br>
+├── advanced_features.py<br>
+├── test_run.py<br>
+├── tests/<br>
+│   ├── test_function.py<br>
+│   ├── test_edge_cases.py<br>
+│   ├── test_performance.py<br>
+│   └── test_data/<br>
+│       ├── sample_small.json<br>
+│       ├── sample_medium.json<br>
+│       └── sample_large.json<br>
+├── README.md<br>
+└── DESIGN.md<br>
+```
+
+---
+
+## Setup Instructions
+### 1. Clone the repository
+```
 git clone <your_repo_link>
-cd Akshansh_Rival_Assignment
+cd YourName_Rival_Assignment
+```
 
-2. Install dependencies
+### 2. Install dependencies
+```
 python -m pip install -r requirements.txt
+```
 
-3. Run a manual test
+### 3. Run a manual test
+```
 python test_run.py
+```
 
-4. Run the full test suite
+### 4. Run the full test suite
+```
 python -m pytest -v
+```
 
-▶️ Usage Example
+---
+
+## Usage Example
+```
 from function import analyze_api_logs
 
 logs = [
@@ -93,50 +111,60 @@ logs = [
 ]
 
 print(analyze_api_logs(logs))
+```
 
-🧪 Testing Instructions
+---
 
-Run all tests:
+## Testing Instructions
 
+### Run all tests:
+```
 python -m pytest -v
+```
 
 
 The suite covers:
 
-Unit tests
+- Unit tests
 
-Edge cases
+- Edge cases
 
-Malformed data
+- Malformed data
 
-Negative values
+- Negative values
 
-Timestamp failures
+- Timestamp failures
 
-Performance benchmark
+- Performance benchmark
 
-All tests should pass (they do in your current build).
+- All tests should pass (they do in your current build).
 
-📊 Time and Space Complexity
-Time Complexity
+---
 
-O(n) for all log processing
+## Time and Space Complexity
+### Time Complexity
 
-No nested loops dependent on n
+- O(n) for all log processing
 
-Performance tested on 10,000 logs under 2 seconds
+- No nested loops dependent on n
+
+- Performance tested on 10,000 logs under 2 seconds
 
 Space Complexity
 
-O(n) for grouped data structures
+- O(n) for grouped data structures
 
 This is optimal for a Python solution.
 
-🧩 Design Summary
+## Design Summary
 
 See DESIGN.md for detailed architectural decisions.
 
-🧑‍💻 Author
+---
+
+## Author
 
 Akshansh Tyagi
 Email: akshanshtyagi2003@gmail.com
+
+---
