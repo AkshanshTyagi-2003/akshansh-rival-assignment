@@ -1,182 +1,182 @@
-Design Document — Rival.io API Log Analytics Engine
-1. Overview
+# Design Document
+## 1. Overview
 
 This document explains the design decisions, architecture, algorithms, trade-offs, and engineering reasoning behind the analytics engine.
 
-The goal was to build a scalable, modular, production-quality system capable of processing thousands of API logs reliably and efficiently.
+The goal was to build a **scalable, modular, production-quality** system capable of processing thousands of API logs reliably and efficiently.
 
-2. Architectural Breakdown
-2.1 Modular File Structure
+---
+
+## 2. Architectural Breakdown
+### 2.1 Modular File Structure
 
 To ensure maintainability and clean separation of concerns:
 
-function.py
+- function.p<br>
 Main orchestrator containing analyze_api_logs()
 
-utils.py
+- utils.py<br>
 Timestamp parsing, input validation, grouping, frequency analysis
 
-config.py
+- config.py<br>
 Threshold values, cost constants, memory pricing brackets
 
-advanced_features.py
+- advanced_features.py<br>
 Cost estimation engine and caching opportunity analysis
 
-tests/
+- tests/<br>
 Full test suite with unit tests, edge cases, performance tests
 
 This mirrors real production backends where business logic is never tightly coupled.
 
-3. Core Logic
-3.1 Summary Metrics
+---
+
+## 3. Core Logic
+### 3.1 Summary Metrics
 
 Collected in a single O(n) pass:
 
-Response time sum
+- Response time sum
 
-Error count
+- Error count
 
-Timestamp min/max
+- Timestamp min/max
 
-Total requests
+- Total requests
 
-3.2 Endpoint Statistics
+### 3.2 Endpoint Statistics
 
 Grouped using a dictionary mapping each endpoint to a list of logs — enabling efficient aggregation without unnecessary nested loops.
 
-3.3 Performance Issue Detection
+### 3.3 Performance Issue Detection
 
 Thresholds defined in config.py:
-
+```
 medium > 500ms
 high > 1000ms
 critical > 2000ms
-
+```
 
 This keeps configuration external and clean.
 
-3.4 Error Rate Detection
+### 3.4 Error Rate Detection
 
 Error rates computed per endpoint with severity tiers.
 
-4. Advanced Features
-4.1 Cost Estimation Engine (Chosen Feature A)
-Why Chosen
+---
 
-Deterministic
+## 4. Advanced Features
+### 4.1 Cost Estimation Engine
+#### Why Chosen
 
-Easy to compute
+- Deterministic
 
-Reflects real cloud billing models
+- Easy to compute
 
-High signal-to-effort ratio
+- Reflects real cloud billing models
 
-Approach
+- High signal-to-effort ratio
+
+#### Approach
 
 For each log:
-
+```
 cost = cost_per_request
       + cost_per_ms * response_time_ms
       + memory_cost(response_size_bytes)
-
+```
 
 Aggregated by endpoint for deeper insights.
 
-4.2 Caching Opportunity Analysis (Chosen Feature D)
-Why Chosen
+### 4.2 Caching Opportunity Analysis (Chosen Feature D)
+#### Why Chosen
 
 Caching is one of the most impactful backend optimizations.
 
-Criteria
+#### Criteria
 
-100 requests
+- 100 requests
 
-80 percent GET
+- 80 percent GET
 
-< 2 percent errors
+- < 2 percent errors
 
-Low response-time variability
+- Low response-time variability
 
 These heuristics replicate real load-balancer caching decisions.
 
-5. Edge-Case Handling
+---
+
+## 5. Edge-Case Handling
 
 Handled in both code and tests:
 
-Empty logs
+- Empty logs
 
-Malformed logs
+- Malformed logs
 
-Missing fields
+- Missing fields
 
-Invalid timestamps
+- Invalid timestamps
 
-Negative numbers
+- Negative numbers
 
-Single log entry
+- Single log entry
 
 A "fail open but return safe values" strategy was chosen.
 
-6. Performance and Scalability
-6.1 Achieved
+## 6. Performance and Scalability
+### 6.1 Achieved
 
-Processed 10,000 logs in under 2 seconds (test included)
+- Processed **10,000 logs in under 2 seconds** (test included)
 
-Linear time complexity O(n)
+- Linear time complexity O(n)
 
-No expensive nested operations
+- No expensive nested operations
 
-6.2 Scaling to 1M+ Logs
+### 6.2 Scaling to 1M+ Logs
 
 Given more logs:
 
-Use generators / streaming
+- Use generators / streaming
 
-Convert lists to Pandas DataFrames for vectorization
+- Convert lists to Pandas DataFrames for vectorization
 
-Use multiprocessing for endpoint-level parallelization
+- Use multiprocessing for endpoint-level parallelization
 
-Consider PyPy or Cython if extreme performance is needed
+- Consider PyPy or Cython if extreme performance is needed
 
-In serverless architecture, shard by time window or endpoint
+- In serverless architecture, shard by time window or endpoint
 
-7. Trade-offs
-Simplicity vs. Precision
+---
+
+## 7. Trade-offs
+#### Simplicity vs. Precision
 
 E.g., caching confidence uses heuristics instead of machine learning.
 
-Modularity vs. Minimal Files
+#### Modularity vs. Minimal Files
 
 Chose modularity for clarity and extensibility.
 
-Performance vs. Memory
+#### Performance vs. Memory
 
 Grouping by endpoint uses additional memory but drastically improves aggregation speed.
 
-8. If Given More Time
+---
 
-I would improve:
+## 8. Time Spent
 
-Add anomaly detection (request spikes, error clusters)
+Approximately **8–9 hours** total:
 
-Add rate-limit violation analysis
+- 3 hours core logic
 
-Add an interactive HTML report
+- 2 hours advanced features
 
-Add visualization using matplotlib or Plotly
+- 1.5 hours testing
 
-Convert the engine into an installable Python package
+- 45 minutes documentation
 
-9. Time Spent
+- 30 minutes debugging and polishing
 
-Approximately 8–9 hours total:
-
-3 hours core logic
-
-2 hours advanced features
-
-1.5 hours testing
-
-45 minutes documentation
-
-30 minutes debugging and polishing
+---
