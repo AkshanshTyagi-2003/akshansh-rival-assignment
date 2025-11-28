@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2025-01-15T10:00:00Z",
+    "endpoint": "/api/a",
+    "method": "GET",
+    "response_time_ms": 200,
+    "status_code": 200,
+    "user_id": "u1",
+    "request_size_bytes": 200,
+    "response_size_bytes": 1000
+  },
+  {
+    "timestamp": "2025-01-15T10:02:00Z",
+    "endpoint": "/api/b",
+    "method": "POST",
+    "response_time_ms": 800,
+    "status_code": 500,
+    "user_id": "u2",
+    "request_size_bytes": 500,
+    "response_size_bytes": 500
+  },
+  {
+    "timestamp": "2025-01-15T10:03:00Z",
+    "endpoint": "/api/a",
+    "method": "GET",
+    "response_time_ms": 140,
+    "status_code": 200,
+    "user_id": "u3",
+    "request_size_bytes": 300,
+    "response_size_bytes": 900
+  }
+]

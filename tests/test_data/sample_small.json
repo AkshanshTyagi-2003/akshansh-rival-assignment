@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp": "2025-01-15T10:00:00Z",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "response_time_ms": 120,
+    "status_code": 200,
+    "user_id": "user_001",
+    "request_size_bytes": 256,
+    "response_size_bytes": 1024
+  },
+  {
+    "timestamp": "2025-01-15T10:04:20Z",
+    "endpoint": "/api/payments",
+    "method": "POST",
+    "response_time_ms": 920,
+    "status_code": 500,
+    "user_id": "user_002",
+    "request_size_bytes": 2048,
+    "response_size_bytes": 256
+  }
+]

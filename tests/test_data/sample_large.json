@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-01-15T10:00:00Z",
+    "endpoint": "/api/data",
+    "method": "GET",
+    "response_time_ms": 180,
+    "status_code": 200,
+    "user_id": "user_001",
+    "request_size_bytes": 256,
+    "response_size_bytes": 1024
+  }
+]
